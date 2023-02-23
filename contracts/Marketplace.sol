@@ -82,8 +82,12 @@ contract Marketplace is ReentrancyGuard, Ownable  {
         emit ItemListed(itemId, contractCallerAddress, title, category, condition, description, localisation, price);
     }
 
+    // Getter functions
+    function getItemId() internal returns (uint) {
+        return latestItemId++;
+    }
 
-  function getItemId() internal returns (uint) {
-    return latestItemId++;
-  }
+    function getListing(uint256 id) external view returns (Listing memory) {
+        return s_listing[id];
+    }
 }
